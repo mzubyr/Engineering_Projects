@@ -109,3 +109,26 @@ New results must be labelled with their date, model assumptions and controller s
 - MATLAB/Simulink simulation
 - Time-domain response analysis
 - Technical documentation
+## 7. Original Simulink Models and Response Plots
+
+The following figures are taken from my original 2017 undergraduate thesis. They show the Simulink implementation and step-response performance of the open-loop system, PID controller and Model Predictive Controller (MPC).
+
+### 7.1 Open-loop system
+
+![Open-loop Simulink model](Results/Figure_4_1_Open_Loop_Model.png)
+
+![Open-loop response](Results/Figure_4_2_Open_Loop_Response.png)
+
+### 7.2 PID controller
+
+![PID Simulink model](Results/Figure_4_3_PID_Model.png)
+
+![PID response](Results/Figure_4_4_PID_Response.png)
+
+### 7.3 Model Predictive Controller
+
+![MPC Simulink model](Results/Figure_4_5_MPC_Model.png)
+
+![MPC response](Results/Figure_4_6_MPC_Response.png)
+
+*Source: Original undergraduate thesis, 2017.*
