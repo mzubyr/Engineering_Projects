@@ -1,0 +1,6 @@
+# Kano approach, runway 06 extended centreline (track 060): two aircraft in trail, 8 NM apart, different types and speeds
+0:00:00.00>CRE APK201 E145 11.8392 8.1563 60 5000 130
+0:00:00.00>CRE APK305 B738 11.7724 8.0385 60 5000 160
+0:00:00.00>TRAILS ON
+0:00:01.00>FF
+0:06:00.00>HOLD
