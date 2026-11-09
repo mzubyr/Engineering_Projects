@@ -33,7 +33,7 @@ The thesis describes the states as position, velocity and coil current. The mani
 
 The MPC table gives prediction horizon 29, control horizon 4 and sampling time 0.0064 s.
 
-The PID table's proportional entry is printed as `-152kj`. The integral and derivative entries are printed as `-190` and `-16`. The likely interpretation `Kp = -152` is provisional only and requires confirmation.
+The PID table's proportional entry is printed as `-152`. The integral and derivative entries are printed as `-190` and `-16`.
 
 ## Original performance table
 
