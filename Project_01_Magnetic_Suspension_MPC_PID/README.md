@@ -49,7 +49,7 @@ The PID tuning table in the scanned thesis reads:
 
 | Parameter | Printed value |
 |---|---:|
-| Proportional | `-152kj` |
+| Proportional | `-152` |
 | Integral | `-190` |
 | Derivative | `-16` |
 
