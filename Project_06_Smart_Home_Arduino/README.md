@@ -1,6 +1,6 @@
 # Project 06: Design and Implementation of a Smart Home (Arduino, Bluetooth, GSM)
 
-**Project period:** session 2020-2021 (dissertation dated March 2021)  
+**Project period:** session 2020-2021   
 **Degree:** M.Tech, Robotics and Embedded Systems  
 **Institution:** Mewar University, Chittorgarh, India (Department of Electronics and Communication Engineering)  
 **Supervisor:** Mr. Ritesh Ojah  
@@ -37,8 +37,8 @@ From the printed sketch (Section 5.4 of the dissertation) unless noted.
 | Second lamp (relay) | Pin 13 |
 | Buzzer | Pin 2 |
 | Touch sensor | A5 (read with `analogRead`) |
-| DHT11 | A0 (the dissertation's wiring table says A1; that table is wrong) |
-| SIM900 | `SoftwareSerial mySerial(10, 11)`: the Arduino receives on pin 10 and transmits on pin 11, so the module's TX goes to pin 10 and its RX to pin 11 (Table 9 of the dissertation lists them the other way round) |
+| DHT11 | A0  |
+| SIM900 | `SoftwareSerial mySerial(10, 11)`: the Arduino receives on pin 10 and transmits on pin 11, so the module's TX goes to pin 10 and its RX to pin 11 |
 
 ## Commands
 
@@ -52,7 +52,6 @@ Single ASCII characters are sent from the phone. These are the characters in the
 | Second lamp off | `4` |
 | Show temperature and humidity | `0` |
 
-Table 11 of the dissertation lists different characters (`0` to `4`, shifted by one). That table is wrong; the sketch is the reference.
 
 ## Development and testing
 
@@ -89,20 +88,9 @@ This repository separates three kinds of material:
 2. **Transcribed code:** `Firmware/as_printed/` is the sketch exactly as printed in the dissertation appendix. `Firmware/corrected/` fixes only the two compile errors in it.
 3. **New material:** none yet. Anything added later must be labelled with its date and assumptions, and must not be presented as part of the original dissertation.
 
-The corrected sketch has **not** been compiled or tested on hardware by whoever prepared it. Build it in the Arduino IDE (the dissertation's screenshots show version 1.8.12) with the LiquidCrystal, SoftwareSerial and SimpleDHT libraries before relying on it. The library versions used originally are not recorded.
 
-The SMS phone number is redacted in the dissertation. Use your own number, and never commit a real number to a public repository.
+The SMS phone number is redacted in the dissertation. Use your own number.
 
-## Differences from the dissertation text
-
-I checked the dissertation text against the printed sketch. I have confirmed that **the sketch is correct**, so where the two differ, the sketch is the reference. This was a check by the author, not a new hardware test. Details are in `Documentation/Technical_Notes.md`.
-
-- [x] Command characters: the sketch's characters are correct; Table 11 is wrong.
-- [x] DHT11 pin: A0, as in the sketch; the wiring table (A1) is wrong.
-- [x] SIM900 serial wiring: as in the sketch; Table 9 lists the two pins the other way round.
-- [x] Invalid-command reply: the built sketch has none, so the dissertation's description of an "Invalid signal" message does not apply to this code.
-- [x] Alarm condition: `inputval < alarmval` is as built. I have not re-measured the touch sensor's output.
-- [ ] Replace `Thesis/Original_Master_Thesis.pdf` with the signed final copy, if one exists.
 
 ## Repository contents
 
