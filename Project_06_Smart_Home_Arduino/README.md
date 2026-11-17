@@ -42,7 +42,7 @@ From the printed sketch (Section 5.4 of the dissertation) unless noted.
 
 ## Commands
 
-Single ASCII characters are sent from the phone. These are the characters in the sketch, which I have confirmed is the correct version:
+Single ASCII characters are sent from the phone.
 
 | Action | Character |
 |---|---|
