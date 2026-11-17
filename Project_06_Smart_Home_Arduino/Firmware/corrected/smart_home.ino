@@ -11,9 +11,9 @@
 //          because the pin variable was used before it was declared.
 //   Fix 2: "pinMode(touchsensorpin,,INPUT);" had a doubled comma.
 //
-// Unresolved differences between the dissertation text and this sketch are
-// listed in Documentation/Technical_Notes.md (command characters, DHT11 pin,
-// SIM900 wiring, invalid-command reply, alarm condition).
+// Where the dissertation text differs from this sketch (command characters,
+// DHT11 pin, SIM900 wiring, invalid-command reply), the author confirmed that
+// the sketch is correct. See Documentation/Technical_Notes.md.
 //
 // Replace the placeholder phone number below with your own. Do not commit a
 // real phone number to a public repository.

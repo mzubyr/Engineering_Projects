@@ -8,25 +8,36 @@ Notes on how the repository material was transcribed from the dissertation, and 
 - The PDF is the copy supplied by the author. Its cover reads "Month - Year", and the recommendation and certificate pages (pages 3 and 4) are unsigned. Replace it with the signed final copy if one exists.
 - The figures in `Results/` are the images embedded in the dissertation: Figure 4 (page 38), Figure 5 (page 39), Figure 20 (page 53), Figure 21 (page 55) and Figure 22 (page 56). Figure 22 is a low-resolution photo (377 x 226 pixels).
 
-## Wiring tables in the dissertation
+## Wiring as built
 
-| Module | Dissertation table | Connection |
-|---|---|---|
-| HC-05 | Table 2 | VCC to 3.3 V, GND to ground, TX to RX, RX to TX |
-| 16x2 LCD | Table 4 | LCD data pins 7, 8, 9, 10 to d3, d4, d5, d6; EN to d7; RS to d8 |
-| DHT11 | Table 6 | VCC to 5 V, DATA to A1, GND to GND |
-| Touch sensor | Table 8 | VCC to 5 V, GND to GND, DATA to A5 |
-| SIM900 | Table 9 | TX to pin 11, RX to pin 10 |
+The sketch is the reference (confirmed by the author). Where the dissertation's wiring tables differ, the tables are wrong.
 
-The sketch also uses pin 9 and pin 13 for the two lamps (through relay modules) and pin 2 for the buzzer. The dissertation has no wiring table for these.
+| Module | Connection |
+|---|---|
+| HC-05 | VCC to 3.3 V, GND to ground, module TX to Arduino RX (pin 0), module RX to Arduino TX (pin 1) (Table 2) |
+| 16x2 LCD | `LiquidCrystal lcd(8,7,3,4,5,6)`: RS = 8, EN = 7, data = 3, 4, 5, 6 (matches Table 4) |
+| DHT11 | VCC to 5 V, DATA to **A0**, GND to GND (Table 6 says A1, which is wrong) |
+| Touch sensor | VCC to 5 V, GND to GND, output to A5 (Table 8) |
+| SIM900 | Arduino receives on pin 10 and transmits on pin 11 (`SoftwareSerial mySerial(10, 11); // RX, TX`). The module's TX therefore goes to pin 10 and its RX to pin 11. Table 9 lists them the other way round. |
+| First lamp (relay) | Pin 9 |
+| Second lamp (relay) | Pin 13 |
+| Buzzer | Pin 2 |
+
+The dissertation has no wiring table for the lamps and the buzzer.
 
 ## Differences between the dissertation text and the printed sketch
 
-1. **Command characters.** Table 11 gives `0` / `1` for the first lamp on / off, `2` / `3` for the second lamp, and `4` for the weather display. The sketch uses `1` / `2`, `3` / `4` and `0`. Every action is shifted by one.
-2. **DHT11 pin.** Table 6 and Figure 12 show the data line on A1. The sketch sets `pinDHT11=A0`.
-3. **SIM900 wiring.** Table 9 connects the SIM900 TX to pin 11 and RX to pin 10. The sketch declares `SoftwareSerial mySerial(10, 11); // RX, TX`, which makes pin 10 the Arduino's receive pin. With a straight TX-to-RX connection the module's TX would go to pin 10, not 11. Check against the built prototype.
-4. **Invalid commands.** Section 4.2.2 and the flowchart (Figure 5) say an invalid command shows "Invalid signal" on the phone and the LCD. The printed sketch has no `default` case in its `switch`.
-5. **Alarm condition.** The sketch reads the touch sensor with `analogRead` and raises the alarm when `inputval < alarmval` (600). Check that this matches the sensor module's real output when touched. The sketch also sends a new SMS on each loop pass while the condition holds.
+The author confirmed on 17 November 2026 that the sketch is correct. Each difference is resolved in favour of the sketch. These are corrections from the author's own check; the touch-sensor output and the wiring were not re-measured when this repository was prepared.
+
+| Item | Dissertation | Sketch (reference) |
+|---|---|---|
+| Command characters | Table 11: `0` / `1` first lamp on / off, `2` / `3` second lamp on / off, `4` weather | `1` / `2` first lamp on / off, `3` / `4` second lamp on / off, `0` weather |
+| DHT11 pin | A1 (Table 6, Figure 12) | A0 |
+| SIM900 pins | Table 9: SIM900 TX to 11, RX to 10 | `SoftwareSerial(10, 11)`, RX = 10, TX = 11 |
+| Invalid command | Section 4.2.2 and Figure 5: "Invalid signal" shown on the phone and the LCD | No `default` case, so no such reply |
+| Alarm condition | Not specified | `analogRead` of the touch sensor, alarm when `inputval < 600` |
+
+One behaviour to be aware of: the sketch sends a new SMS on every loop pass while the alarm condition holds.
 
 ## Compile errors in the printed sketch
 
@@ -37,7 +48,7 @@ The sketch also uses pin 9 and pin 13 for the two lamps (through relay modules) 
 
 Nothing else was changed. The difference between the two files is exactly these two edits.
 
-The corrected sketch has not been compiled or run on hardware by whoever prepared it. The version of the SimpleDHT library used originally is not recorded; the call `dht11.read(pinDHT11, &temp, &humidity, NULL)` follows that library's older interface and may produce a deprecation warning in newer versions.
+The corrected sketch has not been compiled by whoever prepared it, and was not run on hardware as part of preparing this repository. The version of the SimpleDHT library used originally is not recorded; the call `dht11.read(pinDHT11, &temp, &humidity, NULL)` follows that library's older interface and may produce a deprecation warning in newer versions.
 
 ## Other notes
 

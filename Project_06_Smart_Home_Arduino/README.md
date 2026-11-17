@@ -37,22 +37,22 @@ From the printed sketch (Section 5.4 of the dissertation) unless noted.
 | Second lamp (relay) | Pin 13 |
 | Buzzer | Pin 2 |
 | Touch sensor | A5 (read with `analogRead`) |
-| DHT11 | A0 in the sketch (the dissertation's wiring table says A1; see Open items) |
-| SIM900 | `SoftwareSerial mySerial(10, 11)` (RX = 10, TX = 11; see Open items) |
+| DHT11 | A0 (the dissertation's wiring table says A1; that table is wrong) |
+| SIM900 | `SoftwareSerial mySerial(10, 11)`: the Arduino receives on pin 10 and transmits on pin 11, so the module's TX goes to pin 10 and its RX to pin 11 (Table 9 of the dissertation lists them the other way round) |
 
 ## Commands
 
-Single ASCII characters are sent from the phone. The dissertation's command table and the printed sketch use different characters for the same actions:
+Single ASCII characters are sent from the phone. These are the characters in the sketch, which I have confirmed is the correct version:
 
-| Action | Dissertation, Table 11 | Printed sketch |
-|---|---|---|
-| First lamp on | `0` | `1` |
-| First lamp off | `1` | `2` |
-| Second lamp on | `2` | `3` |
-| Second lamp off | `3` | `4` |
-| Show temperature and humidity | `4` | `0` |
+| Action | Character |
+|---|---|
+| First lamp on | `1` |
+| First lamp off | `2` |
+| Second lamp on | `3` |
+| Second lamp off | `4` |
+| Show temperature and humidity | `0` |
 
-I have not yet confirmed which is correct for the built prototype. See Open items.
+Table 11 of the dissertation lists different characters (`0` to `4`, shifted by one). That table is wrong; the sketch is the reference.
 
 ## Development and testing
 
@@ -93,15 +93,15 @@ The corrected sketch has **not** been compiled or tested on hardware by whoever 
 
 The SMS phone number is redacted in the dissertation. Use your own number, and never commit a real number to a public repository.
 
-## Open items
+## Differences from the dissertation text
 
-These differences between the dissertation text and the printed sketch still need to be checked against the original prototype. Details are in `Documentation/Technical_Notes.md`.
+I checked the dissertation text against the printed sketch. I have confirmed that **the sketch is correct**, so where the two differ, the sketch is the reference. This was a check by the author, not a new hardware test. Details are in `Documentation/Technical_Notes.md`.
 
-- [ ] Command characters (Table 11 versus the sketch).
-- [ ] DHT11 pin (A1 in the wiring table, A0 in the sketch).
-- [ ] SIM900 serial wiring (Table 9 versus the `SoftwareSerial` declaration).
-- [ ] Invalid-command reply (described in the text, not present in the sketch).
-- [ ] Alarm condition `inputval < alarmval`, against the touch sensor's actual output.
+- [x] Command characters: the sketch's characters are correct; Table 11 is wrong.
+- [x] DHT11 pin: A0, as in the sketch; the wiring table (A1) is wrong.
+- [x] SIM900 serial wiring: as in the sketch; Table 9 lists the two pins the other way round.
+- [x] Invalid-command reply: the built sketch has none, so the dissertation's description of an "Invalid signal" message does not apply to this code.
+- [x] Alarm condition: `inputval < alarmval` is as built. I have not re-measured the touch sensor's output.
 - [ ] Replace `Thesis/Original_Master_Thesis.pdf` with the signed final copy, if one exists.
 
 ## Repository contents
@@ -109,7 +109,7 @@ These differences between the dissertation text and the printed sketch still nee
 - `Thesis/Original_Master_Thesis.pdf`: the dissertation (67 pages).
 - `Firmware/as_printed/smart_home_as_printed.ino`: sketch as printed.
 - `Firmware/corrected/smart_home.ino`: sketch with the two compile errors fixed.
-- `Documentation/Technical_Notes.md`: wiring, transcription notes and the list of differences.
+- `Documentation/Technical_Notes.md`: wiring, transcription notes and how the differences were resolved.
 - `Results/`: figures from the dissertation (block diagram, flowchart, Proteus circuit, prototype photo, phone app).
 
 ## Skills demonstrated
