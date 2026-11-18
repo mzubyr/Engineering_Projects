@@ -97,7 +97,7 @@ The SMS phone number is redacted in the dissertation. Use your own number.
 - `Thesis/Original_Master_Thesis.pdf`: the dissertation (67 pages).
 - `Firmware/as_printed/smart_home_as_printed.ino`: sketch as printed.
 - `Firmware/corrected/smart_home.ino`: sketch with the two compile errors fixed.
-- `Documentation/Technical_Notes.md`: wiring, transcription notes and how the differences were resolved.
+- `Documentation/Technical_Notes.md`:  wiring, firmware description and points to check on hardware.
 - `Results/`: figures from the dissertation (block diagram, flowchart, Proteus circuit, prototype photo, phone app).
 
 ## Skills demonstrated
